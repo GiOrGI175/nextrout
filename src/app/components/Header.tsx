@@ -2,8 +2,23 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import useHeaderAuth from '../store/store';
+import { usePathname } from 'next/navigation';
+
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'How it Works', href: '/works' },
+  { name: 'Services', href: '/sevice' },
+];
 
 const Header = () => {
+  const toggleSignIn = useHeaderAuth((state) => {
+    !state.toggleSignIn;
+  });
+
+  const PathName = usePathname();
+
   return (
     <header className=' w-full flex justify-center font-[inter]'>
       <div className='max-w-[1440px] w-full  '>
@@ -18,40 +33,24 @@ const Header = () => {
             />
           </div>
 
-          <nav className='max-w-[499px] h-[68px] w-full flex items-center justify-center bg-[#FFFFFF99] rounded-[20px]'>
+          <nav className='max-w-[499px] h-[68px] w-full flex items-center justify-center bg-[#FFFFFF99] rounded-[20px] '>
             <ul className='flex justify-between '>
-              <li className='mr-[47px]'>
-                <Link
-                  href='/'
-                  className=' font-normal text-[16px] leading-[24px]  '
-                >
-                  Home
-                </Link>
-              </li>
-              <li className='mr-[47px]'>
-                <Link
-                  href='/about'
-                  className='font-normal text-[16px] leading-[24px]  '
-                >
-                  About
-                </Link>
-              </li>
-              <li className='mr-[47px]'>
-                <Link
-                  href='/works'
-                  className='font-normal text-[16px] leading-[24px]  '
-                >
-                  How it Works
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/sevice'
-                  className='font-normal text-[16px] leading-[24px]  '
-                >
-                  Services
-                </Link>
-              </li>
+              {navLinks.map((link) => {
+                const isActive = PathName.startsWith(link.href);
+
+                return (
+                  <li className='mr-[47px]'>
+                    <Link
+                      key={`${link.name} + ${link.href}`}
+                      href={link.href}
+                      className={`font-normal text-[16px] leading-[24px]  
+                        ${isActive ? 'text-[#252432]' : 'text-[#8987A1]'}`}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
@@ -60,6 +59,7 @@ const Header = () => {
               <button
                 className='mr-[19px] flex justify-center items-center
                font-normal text-[16px] leading-[24px] cursor-pointer'
+                onClick={toggleSignIn}
               >
                 Sign In
               </button>
@@ -67,6 +67,7 @@ const Header = () => {
               <button
                 className='w-[132px] h-[48px] rounded-[10px] flex justify-center items-center bg-[#4E47FF]
                 font-normal text-[16px] leading-[24px] cursor-pointer'
+                // onClick={toggleSignUp}
               >
                 Sign Up
               </button>
