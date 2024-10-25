@@ -13,9 +13,9 @@ const navLinks = [
 ];
 
 const Header = () => {
-  const toggleSignIn = useHeaderAuth((state) => {
-    !state.toggleSignIn;
-  });
+  const toggleSignIn = useHeaderAuth((state) => state.toggleSignIn);
+
+  const toggleSignUp = useHeaderAuth((state) => state.toggleSignUp);
 
   const PathName = usePathname();
 
@@ -67,7 +67,7 @@ const Header = () => {
               <button
                 className='w-[132px] h-[48px] rounded-[10px] flex justify-center items-center bg-[#4E47FF]
                 font-normal text-[16px] leading-[24px] cursor-pointer'
-                // onClick={toggleSignUp}
+                onClick={toggleSignUp}
               >
                 Sign Up
               </button>
