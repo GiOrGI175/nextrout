@@ -39,9 +39,8 @@ const Header = () => {
                 const isActive = PathName.startsWith(link.href);
 
                 return (
-                  <li className='mr-[47px]'>
+                  <li key={`${link.name} + ${link.href}`} className='mr-[47px]'>
                     <Link
-                      key={`${link.name} + ${link.href}`}
                       href={link.href}
                       className={`font-normal text-[16px] leading-[24px]  
                         ${isActive ? 'text-[#252432]' : 'text-[#8987A1]'}`}
