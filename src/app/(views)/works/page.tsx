@@ -4,7 +4,8 @@ import Link from 'next/link';
 import useHeaderAuth from '@/app/store/store';
 
 const Works = () => {
-  const { showSignIn, showSignUp } = useHeaderAuth();
+  const showSignIn = useHeaderAuth((state) => state.showSignIn);
+  const showSignUp = useHeaderAuth((state) => state.showSignUp);
 
   return (
     <main className='w-full flex flex-col justify-center items-center font-[Raleway]'>

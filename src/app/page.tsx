@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import useHeaderAuth from './store/store';
+import useHeaderAuth from '@/app/store/store';
 
 const Home = () => {
-  const { showSignIn, showSignUp } = useHeaderAuth();
+  const showSignIn = useHeaderAuth((state) => state.showSignIn);
+  const showSignUp = useHeaderAuth((state) => state.showSignUp);
 
   return (
     <main className='w-full flex flex-col justify-center items-center font-[Raleway]'>

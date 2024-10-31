@@ -1,18 +1,15 @@
 import { create } from 'zustand';
-import { useState } from 'react';
 
-interface HeaderAuthState {
+type HeaderAuthState = {
   showSignIn: boolean;
   toggleSignIn: () => void;
   showSignUp: boolean;
   toggleSignUp: () => void;
-}
+};
 
-const useHeaderAuth = create<HeaderAuthState>(() => ({
-const [showSignIn, setShowSignIn] = useState('')
-
- 
-  toggleSignIn: (perv) => setShowSignIn(!perv) ),
+const useHeaderAuth = create<HeaderAuthState>((set) => ({
+  showSignIn: false,
+  toggleSignIn: () => set((state) => ({ showSignIn: !state.showSignIn })),
 
   showSignUp: false,
   toggleSignUp: () => set((state) => ({ showSignUp: !state.showSignUp })),
