@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import useHeaderAuth from '../store/store';
+import useHeaderAuth from '../../hooks/show';
 import { usePathname } from 'next/navigation';
 
 const navLinks = [
